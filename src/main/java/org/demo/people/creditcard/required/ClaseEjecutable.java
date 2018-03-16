@@ -19,8 +19,16 @@ public class ClaseEjecutable {
         System.out.println(cc);
     }
 
+    private void bValidOperation() {
+        boolean valid = cc.isValidOperation(1500L);
+        System.out.println("Es operacion valida ?" + valid);
+    }
+
     public static void main(String[] args) {
         ClaseEjecutable exe = new ClaseEjecutable();
         exe.aShowInfo();
+        exe.bValidOperation();
     }
+
+
 }

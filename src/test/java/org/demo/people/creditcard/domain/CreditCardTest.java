@@ -73,4 +73,15 @@ public class CreditCardTest {
         CreditCard cc = new PERECard(LocalDate.of(2017, 4, 15));
         Assert.assertEquals(0.4, cc.serviceFee(), 0.1);
     }
+
+    @Test
+    public void testValidOperation() {
+        Assert.assertFalse(ccPERE.isValidOperation(1000L));
+        Assert.assertTrue(ccPERE.isValidOperation(800L));
+    }
+
+//    @Test
+//    public void testValidToOperate() {
+//
+//    }
 }
