@@ -4,18 +4,9 @@ import java.time.LocalDate;
 
 public class PERECard extends CreditCard {
 
-    public PERECard() {
-    }
-
-    public PERECard(LocalDate expirationDate) {
-        super(expirationDate);
-    }
-
     public PERECard(Long number, LocalDate expirationDate) {
         super(number, expirationDate);
     }
-
-
 
     @Override
     public String getBrand() {
