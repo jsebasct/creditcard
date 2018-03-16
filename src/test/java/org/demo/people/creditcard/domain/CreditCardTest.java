@@ -1,5 +1,6 @@
 package org.demo.people.creditcard.domain;
 
+import org.apache.tomcat.jni.Local;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,9 +19,14 @@ public class CreditCardTest {
         System.out.println("Before");
         System.out.println(d);
 
-        ccSQUA = new SQUACard();
-        ccSCO = new SCOCard();
-        ccPERE = new PERECard();
+        ccSQUA = new SQUACard(1234_5678_9012_3456L, LocalDate.of(2010, 10, 10));
+        ccSQUA.setCardHolder("Jhon Smith");
+
+        ccSCO = new SCOCard(1234_5678_9012_3456L, LocalDate.of(2010, 10, 10));
+        ccSCO.setCardHolder("Jhon Smith");
+
+        ccPERE = new PERECard(1234_5678_9012_3456L, LocalDate.of(2010, 10, 10));
+        ccPERE.setCardHolder("Jhon Smith");
     }
 
     @Test
@@ -29,9 +35,17 @@ public class CreditCardTest {
         Assert.assertNotNull(ccSCO);
         Assert.assertNotNull(ccPERE);
 
-        Assert.assertEquals("", "SQUACard{}", ccSQUA.toString());
-        Assert.assertEquals("", "SCOCard{}", ccSCO.toString());
-        Assert.assertEquals("", "PERECard{}", ccPERE.toString());
+        Assert.assertEquals("",
+                "SQUACard{brand='SQUA', number=1234567890123456, cardHolder='Jhon Smith', expirationDate=2010-10-10}",
+                ccSQUA.toString());
+
+        Assert.assertEquals("",
+                "SCOCard{brand='SCO', number=1234567890123456, cardHolder='Jhon Smith', expirationDate=2010-10-10}",
+                ccSCO.toString());
+
+        Assert.assertEquals("",
+                "PERECard{brand='PERE', number=1234567890123456, cardHolder='Jhon Smith', expirationDate=2010-10-10}",
+                ccPERE.toString());
     }
 
 

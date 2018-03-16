@@ -11,6 +11,12 @@ public class PERECard extends CreditCard {
         super(expirationDate);
     }
 
+    public PERECard(Long number, LocalDate expirationDate) {
+        super(number, expirationDate);
+    }
+
+
+
     @Override
     public String getBrand() {
         return "PERE";
@@ -19,13 +25,5 @@ public class PERECard extends CreditCard {
     @Override
     public double serviceFee() {
         return this.getExpirationDate().getMonthValue() * 0.1;
-    }
-
-    @Override
-    public String toString() {
-        return "PERECard{" +
-//                "number=" + number +
-//                ", cardHolder='" + cardHolder + '\'' +
-                '}';
     }
 }

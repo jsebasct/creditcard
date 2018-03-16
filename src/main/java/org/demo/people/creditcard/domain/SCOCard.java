@@ -7,6 +7,10 @@ public class SCOCard extends CreditCard {
     public SCOCard() {
     }
 
+    public SCOCard(Long number, LocalDate expirationDate) {
+        super(number, expirationDate);
+    }
+
     public SCOCard(LocalDate expirationDate) {
         super(expirationDate);
     }
@@ -19,8 +23,8 @@ public class SCOCard extends CreditCard {
         return this.getExpirationDate().getDayOfMonth() * 0.5;
     }
 
-    @Override
-    public String toString() {
-        return "SCOCard{}";
-    }
+//    @Override
+//    public String toString() {
+//        return "SCOCard{}";
+//    }
 }

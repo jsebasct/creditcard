@@ -11,6 +11,10 @@ public class SQUACard extends CreditCard {
         super(expirationDate);
     }
 
+    public SQUACard(Long number, LocalDate expirationDate) {
+        super(number, expirationDate);
+    }
+
     @Override
     public String getBrand() {
         return "SQUA";
@@ -21,12 +25,12 @@ public class SQUACard extends CreditCard {
         return getExpirationDate().getYear() / getExpirationDate().getMonthValue();
     }
 
-    @Override
-    public String toString() {
-        return "SQUACard{" +
+//    @Override
+//    public String toString() {
+//        return "SQUACard{" +
 //                "number=" + number +
 //                ", cardHolder='" + cardHolder + '\'' +
 //                ", expirationDate='" + expirationDate + '\'' +
-                "}";
-    }
+//                "}";
+//    }
 }
