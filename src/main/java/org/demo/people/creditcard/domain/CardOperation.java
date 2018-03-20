@@ -1,14 +1,29 @@
 package org.demo.people.creditcard.domain;
 
+import org.demo.people.creditcard.domain.card.CardBrand;
+import org.demo.people.creditcard.domain.card.CreditCard;
+
 public class CardOperation {
 
     public static final Long LIMIT = 1000L;
 
-    public CardOperation(String lastNameOperator) {
+    private CreditCard card;
+
+    public CardOperation() {
     }
 
-    public double getFee(String marca, int importe) {
-        return 0.0;
+    public CardOperation(CreditCard card) {
+        this.card = card;
+    }
+
+    public double getFeeByService(CardBrand brand, int importe) {
+        double res = 0.0;
+
+        if (isValidOperation(importe)) {
+            res = this.card.serviceFee();
+        }
+
+        return res;
     }
 
     /**

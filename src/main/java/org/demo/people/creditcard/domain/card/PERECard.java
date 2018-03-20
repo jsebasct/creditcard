@@ -1,5 +1,6 @@
 package org.demo.people.creditcard.domain.card;
 
+import javax.smartcardio.Card;
 import java.time.LocalDate;
 
 public class PERECard extends CreditCard {
@@ -9,8 +10,8 @@ public class PERECard extends CreditCard {
     }
 
     @Override
-    public String getBrand() {
-        return "PERE";
+    public CardBrand getBrand() {
+        return CardBrand.PERE;
     }
 
     @Override

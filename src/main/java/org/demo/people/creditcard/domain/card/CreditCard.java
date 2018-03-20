@@ -7,7 +7,7 @@ public abstract class CreditCard {
 
 
 
-    private String brand;
+    private CardBrand brand;
     private Long number;
     private String cardHolder;
     private LocalDate expirationDate;
@@ -27,7 +27,7 @@ public abstract class CreditCard {
     }
 
 
-    public abstract String getBrand();
+    public abstract CardBrand getBrand();
 
     public abstract double serviceFee();
 

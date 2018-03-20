@@ -9,8 +9,8 @@ public class SQUACard extends CreditCard {
     }
 
     @Override
-    public String getBrand() {
-        return "SQUA";
+    public CardBrand getBrand() {
+        return CardBrand.SQUA;
     }
 
     @Override
