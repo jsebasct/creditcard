@@ -1,4 +1,4 @@
-package org.demo.people.creditcard.domain;
+package org.demo.people.creditcard.domain.card;
 
 import java.time.LocalDate;
 

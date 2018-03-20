@@ -1,16 +1,18 @@
-package org.demo.people.creditcard.domain;
+package org.demo.people.creditcard.domain.card;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 public abstract class CreditCard {
 
+
+
     private String brand;
     private Long number;
     private String cardHolder;
     private LocalDate expirationDate;
 
-    private static final Long LIMIT = 1000L;
+
 
     public CreditCard() {
     }
@@ -20,13 +22,15 @@ public abstract class CreditCard {
     }
 
     public CreditCard(Long number, LocalDate expirationDate) {
+        this(expirationDate);
         this.number = number;
-        this.expirationDate = expirationDate;
     }
+
 
     public abstract String getBrand();
 
     public abstract double serviceFee();
+
 
     public LocalDate getExpirationDate() {
         return expirationDate;
@@ -54,12 +58,10 @@ public abstract class CreditCard {
                 '}';
     }
 
-    public boolean isValidOperation(long amount) {
-        return amount < LIMIT;
-    }
 
-    public boolean isValidToOperate(LocalDate now) {
-        return now.compareTo(this.getExpirationDate()) < 0;
+
+    public boolean isValidToOperate(LocalDate someDate) {
+        return someDate.compareTo(this.getExpirationDate()) < 0;
     }
 
     @Override
@@ -74,7 +76,6 @@ public abstract class CreditCard {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getBrand(), getNumber());
     }
 }

@@ -1,6 +1,9 @@
-package org.demo.people.creditcard.domain;
+package org.demo.people.creditcard.domain.card;
 
-import org.apache.tomcat.jni.Local;
+import org.demo.people.creditcard.domain.card.CreditCard;
+import org.demo.people.creditcard.domain.card.PERECard;
+import org.demo.people.creditcard.domain.card.SCOCard;
+import org.demo.people.creditcard.domain.card.SQUACard;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,11 +80,7 @@ public class CreditCardTest {
         Assert.assertEquals(0.4, cc.serviceFee(), 0.1);
     }
 
-    @Test
-    public void testValidOperation() {
-        Assert.assertFalse(ccPERE.isValidOperation(1000L));
-        Assert.assertTrue(ccPERE.isValidOperation(800L));
-    }
+
 
     @Test
     public void testValidToOperate() {
