@@ -2,21 +2,28 @@ package org.demo.people.creditcard.domain;
 
 import org.demo.people.creditcard.bad.AccountSystemException;
 import org.demo.people.creditcard.bad.CreditCardDestinationException;
-import org.demo.people.creditcard.bad.MalFunctionPrinterException;
 import org.demo.people.creditcard.bad.DataBaseLockException;
+import org.demo.people.creditcard.bad.MalFunctionPrinterException;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Random;
 
 public class Cobranza {
 
-    Random random = new Random();
+    private Random random;
+    private Deque<String> stack;
+
+    public Cobranza() {
+        random = new Random();
+        stack = new ArrayDeque<String>();
+    }
 
     private boolean getRandomBoolean() {
         return random.nextBoolean();
     }
 
-    public void cobrar() throws MalFunctionPrinterException,
-            CreditCardDestinationException,
+    public void cobrar() throws MalFunctionPrinterException, CreditCardDestinationException,
             AccountSystemException, DataBaseLockException {
 
         imprimirFactura();
@@ -32,6 +39,7 @@ public class Cobranza {
             throw new MalFunctionPrinterException();
         }
 
+        stack.addFirst("IMPRIMIR_FACTURA");
         System.out.println("Termino de Imprimir Factura");
     }
 
@@ -46,6 +54,7 @@ public class Cobranza {
             throw new CreditCardDestinationException();
         }
 
+        stack.addFirst("ENVIAR_INFO_TC");
         System.out.println("Termno de Enviar Info TC");
     }
 
@@ -57,6 +66,7 @@ public class Cobranza {
             throw new AccountSystemException();
         }
 
+        stack.addFirst("INFORMAR_PAGO");
         System.out.println("Terminando Informar Pago");
     }
 
@@ -67,13 +77,32 @@ public class Cobranza {
             throw new DataBaseLockException();
         }
 
+        stack.addFirst("ACTUALIZAR_SALDO");
         System.out.println("termino de actualizar saldo del Cliente"  );
 
     }
 
-
-    public static void main(String[] args) throws Exception {
-        new Cobranza().cobrar();
+    private void rollback() {
+        if (!stack.isEmpty()) {
+            String op = stack.pop();
+            System.out.println("Rollback operation: " + op);
+            rollback();
+        }
     }
+
+
+    public static void main(String[] args)  {
+
+        Cobranza cobranza = new Cobranza();
+
+        try {
+            cobranza.cobrar();
+        } catch (MalFunctionPrinterException | CreditCardDestinationException | AccountSystemException | DataBaseLockException e) {
+            e.printStackTrace();
+            cobranza.rollback();
+        }
+    }
+
+
 
 }
