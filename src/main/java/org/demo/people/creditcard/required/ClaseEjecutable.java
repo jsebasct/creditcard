@@ -1,7 +1,9 @@
 package org.demo.people.creditcard.required;
 
+import org.demo.people.creditcard.domain.CardOperation;
 import org.demo.people.creditcard.domain.card.CreditCard;
 import org.demo.people.creditcard.domain.card.PERECard;
+import org.demo.people.creditcard.domain.card.SCOCard;
 
 import java.time.LocalDate;
 
@@ -19,11 +21,10 @@ public class ClaseEjecutable {
         System.out.println(cc);
     }
 
-    //TODO valid operation
-//    private void bValidOperation() {
-//        boolean valid = cc.isValidOperation(1500L);
-//        System.out.println("Es operacion valida ?" + valid);
-//    }
+    private void bValidOperation() {
+        CardOperation operation = new CardOperation();
+        System.out.println("Es operacion valida ?" + operation.isValidOperation(1001L));
+    }
 
     private void cValidToOperate() {
         boolean valid = cc.isValidToOperate(LocalDate.now());
@@ -44,14 +45,23 @@ public class ClaseEjecutable {
         System.out.println("Should be true:" + cc.equals(ccOtroNum1));
     }
 
+    private void eTasaOperacion() {
+        Long CARD_NUMBER = 1234_5678_9012_3456L;
+        CreditCard card = new SCOCard(CARD_NUMBER, LocalDate.of(2017, 4, 15));
+        CardOperation operation = new CardOperation(card);
 
+        int importe = 540;
+        double opFee = operation.getFeeByService(card.getBrand(), importe);
+        System.out.println("Taza de Operacion " + opFee + " de " + card);
+    }
 
     public static void main(String[] args) {
         ClaseEjecutable exe = new ClaseEjecutable();
         exe.aShowInfo();
-//        exe.bValidOperation();
+        exe.bValidOperation();
         exe.cValidToOperate();
         exe.dIdentifyDifference();
+        exe.eTasaOperacion();
     }
 
 
