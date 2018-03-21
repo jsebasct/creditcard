@@ -22,7 +22,7 @@ public class ClaseEjecutable {
     }
 
     private void bValidOperation() {
-        CardOperation operation = new CardOperation();
+        CardOperation operation = new CardOperation(null);
         System.out.println("Es operacion valida ?" + operation.isValidOperation(1001L));
     }
 
@@ -51,7 +51,7 @@ public class ClaseEjecutable {
         CardOperation operation = new CardOperation(card);
 
         int importe = 540;
-        double opFee = operation.getFeeByService(card.getBrand(), importe);
+        double opFee = operation.getFeeByService(importe);
         System.out.println("Taza de Operacion " + opFee + " de " + card);
     }
 

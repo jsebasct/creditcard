@@ -1,18 +1,25 @@
 package org.demo.people.creditcard.domain.card;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value=PERECard.class, name = "pere"),
+        @JsonSubTypes.Type(value=SCOCard.class, name = "sco"),
+        @JsonSubTypes.Type(value=SQUACard.class, name = "squa")
+})
 public abstract class CreditCard {
-
-
 
     private CardBrand brand;
     private Long number;
     private String cardHolder;
     private LocalDate expirationDate;
-
-
 
     public CreditCard() {
     }
@@ -26,14 +33,32 @@ public abstract class CreditCard {
         this.number = number;
     }
 
+    public CreditCard(CardBrand brand, Long number, String cardHolder, LocalDate expirationDate) {
+        this.brand = brand;
+        this.number = number;
+        this.cardHolder = cardHolder;
+        this.expirationDate = expirationDate;
+    }
 
     public abstract CardBrand getBrand();
+
+    public void setBrand(CardBrand brand) {
+        this.brand = brand;
+    }
 
     public abstract double serviceFee();
 
 
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
     public LocalDate getExpirationDate() {
         return expirationDate;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
     public Long getNumber() {
@@ -47,17 +72,6 @@ public abstract class CreditCard {
     public void setCardHolder(String cardHolder) {
         this.cardHolder = cardHolder;
     }
-
-    @Override
-    public String toString() {
-        return getBrand()+"Card{" +
-                "brand='" + this.getBrand() + '\'' +
-                ", number=" + this.getNumber() +
-                ", cardHolder='" + getCardHolder() + '\'' +
-                ", expirationDate=" + getExpirationDate() +
-                '}';
-    }
-
 
 
     public boolean isValidToOperate(LocalDate someDate) {
@@ -77,5 +91,15 @@ public abstract class CreditCard {
     @Override
     public int hashCode() {
         return Objects.hash(getBrand(), getNumber());
+    }
+
+    @Override
+    public String toString() {
+        return getBrand()+"Card{" +
+                "brand='" + this.getBrand() + '\'' +
+                ", number=" + this.getNumber() +
+                ", cardHolder='" + getCardHolder() + '\'' +
+                ", expirationDate=" + getExpirationDate() +
+                '}';
     }
 }

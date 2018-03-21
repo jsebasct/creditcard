@@ -5,9 +5,19 @@ import java.time.LocalDate;
 
 public class SCOCard extends CreditCard {
 
+    public SCOCard() {
+    }
+
+    public SCOCard(LocalDate expirationDate) {
+        super(expirationDate);
+    }
 
     public SCOCard(Long number, LocalDate expirationDate) {
         super(number, expirationDate);
+    }
+
+    public SCOCard(CardBrand brand, Long number, String cardHolder, LocalDate expirationDate) {
+        super(brand, number, cardHolder, expirationDate);
     }
 
     public CardBrand getBrand() {

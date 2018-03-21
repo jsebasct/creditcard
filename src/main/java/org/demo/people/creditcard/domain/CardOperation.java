@@ -9,14 +9,11 @@ public class CardOperation {
 
     private CreditCard card;
 
-    public CardOperation() {
-    }
-
     public CardOperation(CreditCard card) {
         this.card = card;
     }
 
-    public double getFeeByService(CardBrand brand, int importe) {
+    public double getFeeByService(long importe) {
         double res = 0.0;
 
         if (isValidOperation(importe)) {

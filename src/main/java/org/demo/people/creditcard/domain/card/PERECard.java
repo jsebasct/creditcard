@@ -9,6 +9,17 @@ public class PERECard extends CreditCard {
         super(number, expirationDate);
     }
 
+    public PERECard(CardBrand brand, Long number, String cardHolder, LocalDate expirationDate) {
+        super(brand, number, cardHolder, expirationDate);
+    }
+
+    public PERECard() {
+    }
+
+    public PERECard(LocalDate expirationDate) {
+        super(expirationDate);
+    }
+
     @Override
     public CardBrand getBrand() {
         return CardBrand.PERE;

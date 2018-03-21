@@ -19,7 +19,7 @@ public class OperationTest {
     @Test
     public void testValidOperation() {
 
-        CardOperation operation = new CardOperation();
+        CardOperation operation = new CardOperation(getRandomCard());
 
         Assert.assertFalse(operation.isValidOperation(1001L));
         Assert.assertTrue(operation.isValidOperation(800L));
@@ -31,7 +31,7 @@ public class OperationTest {
         CardOperation operation = new CardOperation(card);
 
         int importe = 540;
-        double opFee = operation.getFeeByService(card.getBrand(), importe);
+        double opFee = operation.getFeeByService(importe);
 
         Assert.assertEquals(7.5, opFee, 0.1);
     }
